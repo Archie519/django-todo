@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF5F6D, #FFC371);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-box {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 380px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            animation: popIn 0.5s ease-in-out;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .heading {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #FF5F6D;
+        }
+
+        .line {
+            width: 60px;
+            height: 4px;
+            background: #FF5F6D;
+            margin: 0 auto 30px;
+            border-radius: 5px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field b {
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 12px 10px;
+            border: 2px solid #FF5F6D;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .inp:focus {
+            outline: none;
+            border-color: #ff3366;
+            box-shadow: 0 0 5px #ff3366;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, #ff3366, #ff9933);
+        }
+
+        .toggle-password {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .toggle-password input {
+            margin-right: 5px;
+        }
+
+        .anc {
+            display: inline-block;
+            margin-top: 10px;
+            color: #FF416C;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .anc:hover {
+            text-decoration: underline;
+        }
+
+        .field a {
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-box">
+        <form method="post">
+            {% csrf_token %}
+            <div class="heading">Login </div>
+            <div class="line"></div>
+
+            <div class="field">
+                <b>Username</b>
+                <input type="text" required class="inp" placeholder="Enter your username" name="fnm">
+            </div>
+
+          
+
+            <div class="field">
+                <b>Password</b>
+                <input type="password" class="inp" id="pwd" name="pwd" required>
+                <div class="toggle-password">
+                    <input type="checkbox" onclick="togglePassword()"> Show Password
+                </div>
+            </div>
+
+            <div class="field">
+                <input type="submit" class="submit-button" value="Sign Up">
+            </div>
+        </form>
+        <div class="field">
+            <b> Don't have an account? </b>
+            <br>
+            <a  class="anc" href="/signup"></a>
+        </div>
+
+      
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById("pwd");
+            pwd.type = pwd.type === "password" ? "text" : "password";
+        }
+    </script>
+</body>
+</html>
